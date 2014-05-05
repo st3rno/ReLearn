@@ -9,5 +9,10 @@
 chrome.extension.onMessage.addListener(
   function(request, sender, sendResponse) {
   	chrome.pageAction.show(sender.tab.id);
+  	chrome.tabs.executeScript(null, { file: "jquery.js" }, function(){
+  		chrome.tabs.executeScript(null, { file: "inject.js" }, function(){
+  			console.log("injecting");
+  		})
+  	})
     sendResponse();
   });
